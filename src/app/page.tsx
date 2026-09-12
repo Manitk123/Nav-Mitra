@@ -1,69 +1,54 @@
-import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
+    <div className="flex flex-col items-center justify-center w-full">
+      {/* Hero Section */}
+      <section className="w-full bg-gov-blue text-white py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto flex flex-col items-center text-center">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6">
+            Bridging Government with <span className="text-gov-orange">Startup Innovation</span>
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="text-xl md:text-2xl max-w-3xl mb-10 text-blue-100">
+            A transparent, compliant, and startup-friendly public procurement mechanism. Identify, pilot, and scale novel solutions.
           </p>
+          <div className="flex flex-col sm:flex-row gap-4">
+            <Link href="/login" className="bg-gov-orange hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-lg shadow-lg transition-colors text-lg">
+              Get Started
+            </Link>
+            <Link href="/startup/challenges" className="bg-white text-gov-blue hover:bg-gray-100 font-bold py-3 px-8 rounded-lg shadow-lg transition-colors text-lg">
+              Browse Challenges
+            </Link>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      {/* Features Section */}
+      <section className="w-full py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 flex-1">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-3xl font-bold text-center text-gov-blue mb-12">How It Works</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Feature 1 */}
+            <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-200 flex flex-col items-center text-center hover:shadow-md transition-shadow">
+              <div className="h-14 w-14 bg-blue-100 text-gov-blue rounded-full flex items-center justify-center mb-6 text-2xl font-bold">1</div>
+              <h3 className="text-xl font-bold mb-3 text-text-primary">Problem Statements</h3>
+              <p className="text-text-secondary">Government departments post outcome-based challenges targeting operational bottlenecks.</p>
+            </div>
+            {/* Feature 2 */}
+            <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-200 flex flex-col items-center text-center hover:shadow-md transition-shadow">
+              <div className="h-14 w-14 bg-orange-100 text-gov-orange rounded-full flex items-center justify-center mb-6 text-2xl font-bold">2</div>
+              <h3 className="text-xl font-bold mb-3 text-text-primary">Startup Discovery</h3>
+              <p className="text-text-secondary">Eligible startups apply with novel technologies. Expert panels evaluate and select the best fit.</p>
+            </div>
+            {/* Feature 3 */}
+            <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-200 flex flex-col items-center text-center hover:shadow-md transition-shadow">
+              <div className="h-14 w-14 bg-green-100 text-success-green rounded-full flex items-center justify-center mb-6 text-2xl font-bold">3</div>
+              <h3 className="text-xl font-bold mb-3 text-text-primary">Pilot & Procure</h3>
+              <p className="text-text-secondary">Structure controlled pilots with milestone-based payments, paving the way for scale-up.</p>
+            </div>
+          </div>
         </div>
-      </main>
+      </section>
     </div>
   );
 }
