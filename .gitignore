@@ -41,8 +41,8 @@ yarn-error.log*
 next-env.d.ts
 
 # Prisma SQLite DB
-*.db
-*.db-journal
+# *.db
+# *.db-journal
 
 # Private documents
 *.md
