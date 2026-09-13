@@ -7,8 +7,8 @@ export default function Navbar() {
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Link href="/" className="flex items-center gap-2">
-              <span className="text-2xl font-bold text-gov-blue">Gov</span>
-              <span className="text-2xl font-bold text-gov-orange">Innovate</span>
+              <span className="text-2xl font-bold text-gov-blue">Nav-</span>
+              <span className="text-2xl font-bold text-gov-orange">Mitra</span>
             </Link>
           </div>
           <div className="flex items-center space-x-4">

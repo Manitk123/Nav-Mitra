@@ -5,9 +5,11 @@ export default function LoginPage() {
     <div className="flex-1 flex flex-col justify-center items-center py-12 px-4 sm:px-6 lg:px-8 bg-gray-50">
       <div className="max-w-md w-full space-y-8 bg-white p-10 rounded-xl shadow-lg border border-gray-100">
         <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gov-blue">
-            Sign in to GovInnovate
-          </h2>
+          <div className="mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-2">
+              Sign in to Nav-Mitra
+            </h2>
+          </div>
           <p className="mt-2 text-center text-sm text-text-secondary">
             Select your portal to continue
           </p>

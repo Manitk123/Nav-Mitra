@@ -10,8 +10,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "GovInnovate Platform",
-  description: "Startup-friendly public procurement mechanism",
+  title: "Nav-Mitra Platform",
+  description: "Frictionless Innovation Procurement for Government",
 };
 
 export default function RootLayout({
