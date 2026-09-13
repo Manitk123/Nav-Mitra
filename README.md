@@ -29,13 +29,13 @@ Government departments post outcome-based problem statements instead of rigid te
 When startups apply with their DPIIT profiles and pitch decks, our **Multimodal Foundation Models** natively parse the massive context (text, images, PDFs) without retrieval lag. The AI instantly screens for eligibility, relevance, technical fit, and risk, ranking the top startups for the human official to select.
 
 ### 3. AI Pilot Structurer (The Sandbox)
-Once a startup is accepted, the AI automatically divides their proposal into a structured pilot containing exactly 3 measurable checkpoints/milestones. It intelligently calculates the timeline and budget allocation for each phase to ensure accountability.
+Once a startup is accepted, the AI automatically divides their proposal into a structured pilot containing exactly 3 measurable checkpoints/milestones. It intelligently calculates the timeline and budget allocation for each phase to ensure accountability. **The platform features a fully interactive inline editing sandbox**, allowing government officials to tweak the AI's proposed budgets and timelines before finalization.
 
 ### 4. Live Camera Verification (Anti-Fraud)
 Startups cannot upload old or fake photos to claim milestone completion. The platform mandates **Live Camera Capture**, ensuring authenticated, real-time proof of work is submitted to the department.
 
 ### 5. Standardized Legal & IP Sandboxes
-The platform automatically generates strict, compliant legal templates for the pilot, explicitly detailing IP Ownership (Background vs. Foreground), Data Security (DPDP Act 2023 compliance), and strict Dos & Don'ts for the startup.
+The platform automatically generates strict, compliant legal templates for the pilot, explicitly detailing IP Ownership (Background vs. Foreground), Data Security (DPDP Act 2023 compliance), and strict Dos & Don'ts for the startup. **Includes native Print-to-PDF export functionality** for offline signing and direct contract attachment flows.
 
 ### 6. Field Verification & Milestone Payments
 The AI pre-verifies the live progress, but the final authorization is handed to a **Field Verification Officer (Human Intervention)**. This ensures public funds are only released via the payment gateway after strict human validation, simultaneously creating monitoring jobs.
