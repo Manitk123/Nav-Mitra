@@ -1,8 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 
 export default function LegalTemplatesPage() {
+  const [signature, setSignature] = useState<string | null>(null);
+
   return (
     <div className="flex-1 bg-gray-50 p-6 md:p-10">
       <div className="max-w-4xl mx-auto">
@@ -53,8 +56,36 @@ export default function LegalTemplatesPage() {
                 <li>Cooperate fully with the assigned Field Verification Officer during on-site inspections.</li>
               </ul>
             </div>
+
+            {signature && (
+              <div className="mt-12 pt-8 border-t border-gray-200">
+                <div className="flex justify-between items-end">
+                  <div>
+                    <p className="text-gray-500 mb-2">Digitally Signed by:</p>
+                    <p className="font-serif text-2xl text-blue-900 border-b border-gray-300 inline-block pr-8 min-w-[200px]">{signature}</p>
+                    <p className="text-sm text-gray-500 mt-2">Date: {new Date().toLocaleDateString()}</p>
+                  </div>
+                  <div className="text-right">
+                    <span className="inline-block border-2 border-green-600 text-green-600 px-4 py-2 font-bold transform -rotate-12 rounded-sm opacity-80">
+                      DIGITALLY SIGNED<br/><span className="text-xs font-mono">{Math.random().toString(36).substring(2, 10).toUpperCase()}</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
           <div className="bg-gray-50 px-6 py-4 border-t border-gray-200 flex justify-end gap-4 print:hidden">
+            {!signature && (
+              <button 
+                onClick={() => {
+                  const name = window.prompt("Enter your full name to electronically sign this document:");
+                  if (name && name.trim() !== "") setSignature(name);
+                }}
+                className="px-4 py-2 text-sm font-bold text-gov-orange bg-orange-50 border border-gov-orange rounded-md shadow-sm hover:bg-orange-100 mr-auto"
+              >
+                ✍️ e-Sign Document
+              </button>
+            )}
             <button 
               onClick={() => window.print()}
               className="px-4 py-2 text-sm font-bold text-gray-600 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50"
@@ -63,10 +94,14 @@ export default function LegalTemplatesPage() {
             </button>
             <button 
               onClick={() => {
-                alert("Contract successfully attached to the pilot! Notifications sent to Startup and Field Verification Officer.");
+                if (!signature) {
+                  alert("You must e-Sign the document before attaching it to the pilot.");
+                  return;
+                }
+                alert("Contract successfully signed and attached to the pilot! Notifications sent to Startup and Field Verification Officer.");
                 window.location.href = '/dept/payments';
               }}
-              className="px-4 py-2 text-sm font-bold text-white bg-gov-blue rounded-md shadow-sm hover:bg-blue-800"
+              className={`px-4 py-2 text-sm font-bold text-white rounded-md shadow-sm transition-colors ${signature ? 'bg-gov-blue hover:bg-blue-800' : 'bg-gray-400 cursor-not-allowed'}`}
             >
               Attach to Pilot
             </button>
