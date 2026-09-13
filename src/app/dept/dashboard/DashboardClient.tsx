@@ -32,12 +32,20 @@ export default function DashboardClient({ initialChallenges }: { initialChalleng
             <h1 className="text-3xl font-bold text-gov-blue">Department Dashboard</h1>
             <p className="text-text-secondary mt-1">Manage your problem statements and review startup applications.</p>
           </div>
-          <button 
-            onClick={() => setShowForm(!showForm)}
-            className="bg-gov-orange hover:bg-orange-600 text-white px-5 py-2.5 rounded-lg font-medium shadow-sm transition-colors"
-          >
-            {showForm ? "Cancel" : "+ Post New Challenge"}
-          </button>
+          <div className="flex gap-3">
+            <Link 
+              href="/dept/templates"
+              className="bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 px-5 py-2.5 rounded-lg font-medium shadow-sm transition-colors"
+            >
+              Legal Templates
+            </Link>
+            <button 
+              onClick={() => setShowForm(!showForm)}
+              className="bg-gov-orange hover:bg-orange-600 text-white px-5 py-2.5 rounded-lg font-medium shadow-sm transition-colors"
+            >
+              {showForm ? "Cancel" : "+ Post New Challenge"}
+            </button>
+          </div>
         </div>
 
         {showForm && (

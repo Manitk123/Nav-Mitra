@@ -154,3 +154,53 @@ export async function getPilotDetails(applicationId: string) {
     }
   });
 }
+
+export async function getStartupPilots() {
+  // Mock authentication: Just fetch the first pilot for the demo
+  return await prisma.pilot.findMany({
+    include: {
+      application: { include: { challenge: true } },
+      milestones: {
+        orderBy: { orderIndex: 'asc' }
+      }
+    },
+    take: 1
+  });
+}
+
+export async function getDepartmentPilots() {
+  return await prisma.pilot.findMany({
+    include: {
+      application: { include: { challenge: true } },
+      milestones: {
+        orderBy: { orderIndex: 'asc' }
+      }
+    }
+  });
+}
+
+export async function submitMilestoneProgress(milestoneId: string, reportText: string) {
+  // Mock AI Progress Tracker
+  // In reality, this would send `reportText` to an LLM to verify against the milestone description.
+  // For the hackathon demo, we simulate successful AI validation.
+
+  const updated = await prisma.milestone.update({
+    where: { id: milestoneId },
+    data: { status: "Completed" } // Changed from Pending -> Completed
+  });
+
+  revalidatePath('/startup/milestones');
+  revalidatePath('/dept/payments');
+  return updated;
+}
+
+export async function releasePayment(milestoneId: string) {
+  const updated = await prisma.milestone.update({
+    where: { id: milestoneId },
+    data: { status: "Paid" } // Changed from Completed -> Paid
+  });
+
+  revalidatePath('/dept/payments');
+  revalidatePath('/startup/milestones');
+  return updated;
+}

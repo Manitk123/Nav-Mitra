@@ -100,10 +100,19 @@ export default function PilotDesignSandbox({ params }: { params: Promise<{ appli
               </div>
 
               <div className="mt-10 flex justify-end gap-4 border-t border-gray-100 pt-6">
-                <button className="px-6 py-2.5 rounded-md font-medium text-text-secondary border border-gray-200 hover:bg-gray-50 transition-colors">
+                <button 
+                  onClick={() => alert("Milestone Editing Mode Enabled. (Demo Mode: You can now adjust budgets and timelines before finalizing).")}
+                  className="px-6 py-2.5 rounded-md font-medium text-text-secondary border border-gray-200 hover:bg-gray-50 transition-colors"
+                >
                   Edit Milestones
                 </button>
-                <button className="bg-gov-blue hover:bg-blue-800 text-white px-8 py-2.5 rounded-md font-medium transition-colors shadow-sm">
+                <button 
+                  onClick={() => {
+                    alert("Pilot Contract Generated Successfully! Standard IP & Data-sharing clauses applied. Redirecting to Legal Templates vault...");
+                    window.location.href = '/dept/templates';
+                  }}
+                  className="bg-gov-blue hover:bg-blue-800 text-white px-8 py-2.5 rounded-md font-medium transition-colors shadow-sm"
+                >
                   Finalize & Generate Contract
                 </button>
               </div>
