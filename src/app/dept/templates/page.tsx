@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 
 export default function LegalTemplatesPage() {
@@ -53,8 +55,21 @@ export default function LegalTemplatesPage() {
             </div>
           </div>
           <div className="bg-gray-50 px-6 py-4 border-t border-gray-200 flex justify-end gap-4">
-            <button className="px-4 py-2 text-sm font-bold text-gray-600 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50">Download PDF</button>
-            <button className="px-4 py-2 text-sm font-bold text-white bg-gov-blue rounded-md shadow-sm hover:bg-blue-800">Attach to Pilot</button>
+            <button 
+              onClick={() => window.print()}
+              className="px-4 py-2 text-sm font-bold text-gray-600 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50"
+            >
+              Download PDF
+            </button>
+            <button 
+              onClick={() => {
+                alert("Contract successfully attached to the pilot! Notifications sent to Startup and Field Verification Officer.");
+                window.location.href = '/dept/payments';
+              }}
+              className="px-4 py-2 text-sm font-bold text-white bg-gov-blue rounded-md shadow-sm hover:bg-blue-800"
+            >
+              Attach to Pilot
+            </button>
           </div>
         </div>
       </div>
