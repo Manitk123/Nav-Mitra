@@ -45,7 +45,7 @@ next-env.d.ts
 # *.db-journal
 
 # Private documents
-*.md
 *.pdf
 *.pptx
 *.md
+!README.md
