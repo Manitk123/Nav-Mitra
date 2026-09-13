@@ -1,4 +1,4 @@
-# Nav-Mitra 🚀
+# NavMitra 🚀
 
 > **Smart India Hackathon 2026**
 > **Problem Statement ID:** 26136

@@ -10,7 +10,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Nav-Mitra Platform",
+  title: "NavMitra Platform",
   description: "Frictionless Innovation Procurement for Government",
 };
 
