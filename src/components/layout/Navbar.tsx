@@ -15,6 +15,9 @@ export default function Navbar() {
             <Link href="/startup/challenges" className="text-text-secondary hover:text-gov-blue px-3 py-2 rounded-md text-sm font-medium transition-colors">
               Browse Challenges
             </Link>
+            <Link href="/startup/milestones" className="text-text-secondary hover:text-gov-blue px-3 py-2 rounded-md text-sm font-medium transition-colors">
+              My Projects
+            </Link>
             <Link href="/login" className="bg-gov-blue text-white hover:bg-blue-800 px-4 py-2 rounded-md text-sm font-medium transition-colors shadow-sm">
               Sign In
             </Link>
