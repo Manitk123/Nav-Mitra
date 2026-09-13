@@ -204,3 +204,16 @@ export async function releasePayment(milestoneId: string) {
   revalidatePath('/startup/milestones');
   return updated;
 }
+
+export async function updateMilestones(milestones: {id: string, allocatedBudget: number, durationDays: number}[], applicationId: string) {
+  for (const m of milestones) {
+    await prisma.milestone.update({
+      where: { id: m.id },
+      data: { 
+        allocatedBudget: m.allocatedBudget,
+        durationDays: m.durationDays
+      }
+    });
+  }
+  revalidatePath(`/dept/pilot/design/${applicationId}`);
+}

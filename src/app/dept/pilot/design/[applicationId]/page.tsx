@@ -2,13 +2,15 @@
 
 import { useState, use } from "react";
 import Link from "next/link";
-import { generatePilotStructure, getPilotDetails } from "@/app/actions";
+import { generatePilotStructure, getPilotDetails, updateMilestones } from "@/app/actions";
 
 export default function PilotDesignSandbox({ params }: { params: Promise<{ applicationId: string }> }) {
   const { applicationId } = use(params);
   
   const [isGenerating, setIsGenerating] = useState(false);
   const [pilot, setPilot] = useState<any>(null);
+  const [isEditing, setIsEditing] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
 
   const handleGenerate = async () => {
     setIsGenerating(true);
@@ -23,6 +25,25 @@ export default function PilotDesignSandbox({ params }: { params: Promise<{ appli
     } finally {
       setIsGenerating(false);
     }
+  };
+
+  const handleSaveEdits = async () => {
+    setIsSaving(true);
+    try {
+      await updateMilestones(pilot.milestones, applicationId);
+      setIsEditing(false);
+    } catch(e) {
+      alert("Failed to save changes");
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
+  const updateMilestoneField = (id: string, field: string, value: number) => {
+    setPilot((prev: any) => ({
+      ...prev,
+      milestones: prev.milestones.map((m: any) => m.id === id ? { ...m, [field]: value || 0 } : m)
+    }));
   };
 
   return (
@@ -86,13 +107,35 @@ export default function PilotDesignSandbox({ params }: { params: Promise<{ appli
                     <div className="bg-gray-50 rounded-lg p-4 border border-gray-100">
                       <div className="flex justify-between items-start mb-2">
                         <h4 className="font-bold text-gov-blue">{m.title}</h4>
-                        <span className="bg-orange-50 text-gov-orange px-3 py-1 rounded-full text-sm font-bold border border-orange-100">
-                          ₹{m.allocatedBudget.toLocaleString()}
-                        </span>
+                        {isEditing ? (
+                          <div className="flex items-center gap-2">
+                            <span className="text-sm font-bold text-gray-500">₹</span>
+                            <input 
+                              type="number" 
+                              value={m.allocatedBudget} 
+                              onChange={(e) => updateMilestoneField(m.id, 'allocatedBudget', parseInt(e.target.value))}
+                              className="border border-gray-300 rounded px-2 py-1 text-sm font-bold text-gov-orange w-32 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                            />
+                          </div>
+                        ) : (
+                          <span className="bg-orange-50 text-gov-orange px-3 py-1 rounded-full text-sm font-bold border border-orange-100">
+                            ₹{m.allocatedBudget.toLocaleString()}
+                          </span>
+                        )}
                       </div>
                       <p className="text-sm text-text-secondary mb-3">{m.description}</p>
-                      <div className="text-xs text-gray-500 font-medium">
-                        Estimated Duration: {m.durationDays} Days
+                      <div className="text-xs text-gray-500 font-medium flex items-center">
+                        Estimated Duration: 
+                        {isEditing ? (
+                          <input 
+                            type="number" 
+                            value={m.durationDays} 
+                            onChange={(e) => updateMilestoneField(m.id, 'durationDays', parseInt(e.target.value))}
+                            className="border border-gray-300 rounded px-2 py-1 ml-2 text-xs w-20 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          />
+                        ) : (
+                          <span className="ml-1">{m.durationDays}</span>
+                        )} Days
                       </div>
                     </div>
                   </div>
@@ -100,12 +143,22 @@ export default function PilotDesignSandbox({ params }: { params: Promise<{ appli
               </div>
 
               <div className="mt-10 flex justify-end gap-4 border-t border-gray-100 pt-6">
-                <button 
-                  onClick={() => alert("Milestone Editing Mode Enabled. (Demo Mode: You can now adjust budgets and timelines before finalizing).")}
-                  className="px-6 py-2.5 rounded-md font-medium text-text-secondary border border-gray-200 hover:bg-gray-50 transition-colors"
-                >
-                  Edit Milestones
-                </button>
+                {isEditing ? (
+                  <button 
+                    onClick={handleSaveEdits}
+                    disabled={isSaving}
+                    className="px-6 py-2.5 rounded-md font-medium text-white bg-green-600 hover:bg-green-700 transition-colors flex items-center shadow-sm"
+                  >
+                    {isSaving ? "Saving..." : "Save Changes"}
+                  </button>
+                ) : (
+                  <button 
+                    onClick={() => setIsEditing(true)}
+                    className="px-6 py-2.5 rounded-md font-medium text-text-secondary border border-gray-200 hover:bg-gray-50 transition-colors"
+                  >
+                    Edit Milestones
+                  </button>
+                )}
                 <button 
                   onClick={() => {
                     alert("Pilot Contract Generated Successfully! Standard IP & Data-sharing clauses applied. Redirecting to Legal Templates vault...");
