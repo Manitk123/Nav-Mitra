@@ -104,18 +104,28 @@ export async function generatePilotStructure(applicationId: string) {
     }
   });
 
-  // Mock AI Structurer: Split cost and time into 3 distinct milestones
-  const splitBudget = Math.floor(application.estimatedCost / 3);
+  // Mock AI Structurer: 20% Advance, then split remainder into 3 milestones
+  const advanceBudget = Math.floor(application.estimatedCost * 0.20);
+  const remainingBudget = application.estimatedCost - advanceBudget;
+  const splitBudget = Math.floor(remainingBudget / 3);
   const splitDays = Math.floor((application.estimatedTime * 30) / 3); // Convert months to days
 
   const milestonesData = [
+    {
+      pilotId: pilot.id,
+      title: "Advance Payment / Project Kickoff",
+      description: "Initial 20% advance payment disbursed to commence pilot operations.",
+      allocatedBudget: advanceBudget,
+      durationDays: 0,
+      orderIndex: 1
+    },
     {
       pilotId: pilot.id,
       title: "Phase 1: Architecture & Design",
       description: "Finalize technical architecture and provision cloud resources.",
       allocatedBudget: splitBudget,
       durationDays: splitDays,
-      orderIndex: 1
+      orderIndex: 2
     },
     {
       pilotId: pilot.id,
@@ -123,15 +133,15 @@ export async function generatePilotStructure(applicationId: string) {
       description: "Develop the core functionality and integrate primary APIs.",
       allocatedBudget: splitBudget,
       durationDays: splitDays,
-      orderIndex: 2
+      orderIndex: 3
     },
     {
       pilotId: pilot.id,
       title: "Phase 3: Testing & Handover",
       description: "Conduct UAT, security audits, and deploy to staging for department review.",
-      allocatedBudget: application.estimatedCost - (splitBudget * 2), // Remainder
+      allocatedBudget: remainingBudget - (splitBudget * 2), // Remainder
       durationDays: splitDays,
-      orderIndex: 3
+      orderIndex: 4
     }
   ];
 
