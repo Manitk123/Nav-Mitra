@@ -6,21 +6,21 @@ export default function LegalTemplatesPage() {
   return (
     <div className="flex-1 bg-gray-50 p-6 md:p-10">
       <div className="max-w-4xl mx-auto">
-        <div className="mb-8">
-          <Link href="/dept/dashboard" className="text-gov-blue hover:underline text-sm font-medium mb-4 inline-block">
+        <div className="mb-8 print:mb-4">
+          <Link href="/dept/dashboard" className="text-gov-blue hover:underline text-sm font-medium mb-4 inline-block print:hidden">
             &larr; Back to Dashboard
           </Link>
-          <h1 className="text-3xl font-bold text-text-primary">Standardized Legal Templates</h1>
-          <p className="text-text-secondary mt-1">Pre-approved legal documentation for startup pilot procurement.</p>
+          <h1 className="text-3xl font-bold text-text-primary print:text-4xl print:text-black">Standardized Legal Templates</h1>
+          <p className="text-text-secondary mt-1 print:text-black">Pre-approved legal documentation for startup pilot procurement.</p>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
-          <div className="border-b border-gray-200 bg-gray-50 px-6 py-4 flex justify-between items-center">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden print:shadow-none print:border-none print:overflow-visible">
+          <div className="border-b border-gray-200 bg-gray-50 px-6 py-4 flex justify-between items-center print:border-b-2 print:border-black print:bg-white print:px-0">
             <h2 className="font-bold text-gray-800">IP Ownership & Data Sharing Agreement</h2>
             <span className="bg-green-100 text-green-700 text-xs font-bold px-2 py-1 rounded">Approved by Legal</span>
           </div>
-          <div className="p-8 prose max-w-none text-sm text-gray-700">
-            <h3 className="text-lg font-bold text-gray-900 mb-4">1. Intellectual Property (IP) Rights</h3>
+          <div className="p-8 prose max-w-none text-sm text-gray-700 print:p-0 print:pt-4 print:text-black">
+            <h3 className="text-lg font-bold text-gray-900 mb-4 print:text-xl print:text-black">1. Intellectual Property (IP) Rights</h3>
             <p className="mb-4">
               <strong>1.1 Background IP:</strong> The Startup retains all rights, title, and interest in and to any pre-existing intellectual property, including algorithms, software, and proprietary technology ("Background IP") used in the execution of the Pilot.
             </p>
@@ -54,7 +54,7 @@ export default function LegalTemplatesPage() {
               </ul>
             </div>
           </div>
-          <div className="bg-gray-50 px-6 py-4 border-t border-gray-200 flex justify-end gap-4">
+          <div className="bg-gray-50 px-6 py-4 border-t border-gray-200 flex justify-end gap-4 print:hidden">
             <button 
               onClick={() => window.print()}
               className="px-4 py-2 text-sm font-bold text-gray-600 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50"
